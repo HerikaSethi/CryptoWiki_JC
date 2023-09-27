@@ -1,5 +1,6 @@
 package `in`.hypernation.cryptowiki.screens.home_screen
 
+import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -29,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -63,9 +65,8 @@ fun HomeScreen(
     var isSearchAnimate by remember {
         mutableStateOf(false)
     }
-    var searchText by remember {
-        mutableStateOf("")
-    }
+    val searchText by viewModel.searchText.collectAsState()
+    val coins by viewModel.searchState.collectAsState(initial = state.data)
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -93,10 +94,9 @@ fun HomeScreen(
                     searchText,
                     onClick = {
                         isSearchAnimate =!isSearchAnimate
+                        viewModel.clearSearch()
                     },
-                    onChange = {value ->
-                        searchText = value
-                    }
+                    onChange = viewModel::updateSearch
                 )
             }
             LazyColumn(
@@ -110,7 +110,8 @@ fun HomeScreen(
                             modifier = Modifier
                                 .padding(30.dp, 20.dp, 20.dp, 40.dp)
                                 .graphicsLayer {
-                                    alpha = min(1f, 1 - (lazyState.firstVisibleItemScrollOffset / 300f))
+                                    alpha =
+                                        min(1f, 1 - (lazyState.firstVisibleItemScrollOffset / 300f))
                                     translationY = -lazyState.firstVisibleItemScrollOffset * 0.1f
                                 }
                         ) {
@@ -136,7 +137,7 @@ fun HomeScreen(
                     }
 
                 }
-                items(state.data) { coin ->
+                items(coins) { coin ->
                     CryptoListItem(coin) {
                         navController.navigate(Screen.DetailScreen.route + "/${coin.id}")
                     }
@@ -179,11 +180,14 @@ fun SearchCard(
         modifier = Modifier
             .shadow(
                 elevation = 2.dp,
-                shape = RoundedCornerShape(if(isSearchAnimate) 25.dp else 100.dp),
+                shape = RoundedCornerShape(if (isSearchAnimate) 25.dp else 100.dp),
                 spotColor = Color.Black
             )
-            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(if(isSearchAnimate) 25.dp else 100.dp))
-            .padding(vertical = if(isSearchAnimate) 2.dp else 10.dp, horizontal = 24.dp)
+            .background(
+                MaterialTheme.colorScheme.surface,
+                RoundedCornerShape(if (isSearchAnimate) 25.dp else 100.dp)
+            )
+            .padding(vertical = if (isSearchAnimate) 2.dp else 10.dp, horizontal = 24.dp)
             .animateContentSize(
                 animationSpec = tween(100)
             ),
