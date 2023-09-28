@@ -4,6 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.accompanist.swiperefresh.SwipeRefreshState
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import `in`.hypernation.cryptowiki.data.repository.CryptoRepository
 import `in`.hypernation.cryptowiki.utils.Resource
@@ -27,6 +29,9 @@ class CoinListViewModel @Inject constructor(
     private val _state = mutableStateOf(CoinListState())
     val state: State<CoinListState> = _state
 
+    private val _isRefreshing = mutableStateOf(false)
+    val isRefreshing = _isRefreshing
+
     private val _searchText = MutableStateFlow("")
     val searchText = _searchText.asStateFlow()
 
@@ -48,7 +53,6 @@ class CoinListViewModel @Inject constructor(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),
             _searchCoinState.value
-
         )
 
 
@@ -68,6 +72,28 @@ class CoinListViewModel @Inject constructor(
                 is Resource.Success -> {
                     _state.value = CoinListState(data = result.data ?: emptyList(), isLoading = false)
                     _searchCoinState.value = state.value.data
+                }
+                is Resource.Error -> {
+                    _state.value = CoinListState(error = result.message ?: "Something went wrong", isLoading = false)
+                }
+
+                else -> {
+                    _state.value = CoinListState(isLoading = true)
+                }
+            }
+
+        }
+
+    }
+
+    fun refreshCoinList(){
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            when(val result = cryptoRepository.getCoinList()){
+                is Resource.Success -> {
+                    _state.value = CoinListState(data = result.data ?: emptyList(), isLoading = false)
+                    _searchCoinState.value = state.value.data
+                    _isRefreshing.value = false
                 }
                 is Resource.Error -> {
                     _state.value = CoinListState(error = result.message ?: "Something went wrong", isLoading = false)

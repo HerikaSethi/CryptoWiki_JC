@@ -39,7 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import `in`.hypernation.cryptowiki.R
+import com.herika.cryptowiki.R
 import `in`.hypernation.cryptowiki.data.dto.Tag
 import `in`.hypernation.cryptowiki.data.dto.Team
 import `in`.hypernation.cryptowiki.domain.models.Coin

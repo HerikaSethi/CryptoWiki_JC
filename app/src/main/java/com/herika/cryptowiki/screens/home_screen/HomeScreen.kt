@@ -49,7 +49,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import `in`.hypernation.cryptowiki.R
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.herika.cryptowiki.R
 import `in`.hypernation.cryptowiki.screens.Screen
 import `in`.hypernation.cryptowiki.screens.view_models.CoinListViewModel
 import `in`.hypernation.cryptowiki.ui.theme.fonts
@@ -62,6 +64,7 @@ fun HomeScreen(
 ) {
     val lazyState = rememberLazyListState()
     val state = viewModel.state.value
+    val refreshState = rememberSwipeRefreshState(isRefreshing = viewModel.isRefreshing.value)
     var isSearchAnimate by remember {
         mutableStateOf(false)
     }
@@ -72,6 +75,7 @@ fun HomeScreen(
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.primary)
     ) {
+
         Column {
             Row(
                 modifier = Modifier
@@ -144,6 +148,7 @@ fun HomeScreen(
                 }
             }
 
+
         }
         if(state.error.isNotBlank()) {
             Text(
@@ -164,6 +169,117 @@ fun HomeScreen(
             )
         }
 
+    }
+
+    SwipeRefresh(
+        state = refreshState,
+        onRefresh =  viewModel::refreshCoinList,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.primary)
+        ) {
+
+            Column {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 30.dp, top = 30.dp, end = 30.dp, bottom = 20.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    if(!isSearchAnimate){
+                        Text(
+                            text = stringResource(id = R.string.app_name),
+                            color = MaterialTheme.colorScheme.tertiary,
+                            fontSize = 24.sp,
+                            fontFamily = fonts,
+                            fontWeight = FontWeight.SemiBold
+
+                        )
+                    }
+                    SearchCard(isSearchAnimate,
+                        searchText,
+                        onClick = {
+                            isSearchAnimate =!isSearchAnimate
+                            viewModel.clearSearch()
+                        },
+                        onChange = viewModel::updateSearch
+                    )
+                }
+                LazyColumn(
+                    state = lazyState,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    item {
+
+                        if(!isSearchAnimate){
+                            Column(
+                                modifier = Modifier
+                                    .padding(30.dp, 20.dp, 20.dp, 40.dp)
+                                    .graphicsLayer {
+                                        alpha =
+                                            min(
+                                                1f,
+                                                1 - (lazyState.firstVisibleItemScrollOffset / 300f)
+                                            )
+                                        translationY =
+                                            -lazyState.firstVisibleItemScrollOffset * 0.1f
+                                    }
+                            ) {
+                                Text(
+                                    text = "here,",
+                                    color = MaterialTheme.colorScheme.surfaceVariant,
+                                    fontSize = 24.sp,
+                                    fontFamily = fonts,
+                                    fontWeight = FontWeight.Normal,
+
+                                    )
+                                Text(
+                                    text = stringResource(id = R.string.app_description),
+                                    color = MaterialTheme.colorScheme.tertiary,
+                                    fontSize = 28.sp,
+                                    fontFamily = fonts,
+                                    fontWeight = FontWeight.Normal,
+                                    modifier = Modifier.fillMaxWidth(),
+                                    lineHeight = 36.sp
+                                )
+
+                            }
+                        }
+
+                    }
+                    items(coins) { coin ->
+                        CryptoListItem(coin) {
+                            navController.navigate(Screen.DetailScreen.route + "/${coin.id}")
+                        }
+                    }
+                }
+
+
+            }
+            if(state.error.isNotBlank()) {
+                Text(
+                    text = state.error,
+                    color = MaterialTheme.colorScheme.error,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .align(Alignment.Center)
+                )
+            }
+            if(state.isLoading) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .align(Alignment.Center),
+                    color = MaterialTheme.colorScheme.tertiary,
+                )
+            }
+
+        }
     }
 }
 

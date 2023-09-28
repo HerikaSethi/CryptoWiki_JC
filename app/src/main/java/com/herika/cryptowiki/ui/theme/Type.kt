@@ -9,7 +9,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import `in`.hypernation.cryptowiki.R
+import com.herika.cryptowiki.R
 
 val fonts = FontFamily(
     Font(R.font.outfit_regular, weight = FontWeight.Normal),
