@@ -1,4 +1,4 @@
-package `in`.hypernation.cryptowiki.ui.theme
+package com.herika.cryptowiki.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

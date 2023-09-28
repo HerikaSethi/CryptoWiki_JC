@@ -1,6 +1,6 @@
-package `in`.hypernation.cryptowiki.screens.view_models
+package com.herika.cryptowiki.screens.view_models
 
-import `in`.hypernation.cryptowiki.domain.models.CoinList
+import com.herika.cryptowiki.domain.models.CoinList
 
 data class CoinListState(
     var data : List<CoinList> = emptyList(),

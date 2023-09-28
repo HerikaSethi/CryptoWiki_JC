@@ -7,15 +7,15 @@ plugins {
 }
 
 android {
-    namespace = "in.hypernation.cryptowiki"
+    namespace = "com.herika.cryptowiki"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "in.hypernation.cryptowiki"
+        applicationId = "com.herika.cryptowiki"
         minSdk = 24
         targetSdk = 33
-        versionCode = 3
-        versionName = "1.0.0 Production"
+        versionCode = 1
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -89,6 +89,8 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation ("androidx.compose.foundation:foundation:1.5.0")
+
+    implementation ("com.google.accompanist:accompanist-swiperefresh:0.25.1")
 
 
 }

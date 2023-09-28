@@ -1,9 +1,6 @@
-package `in`.hypernation.cryptowiki.ui.theme
+package com.herika.cryptowiki.ui.theme
 
-import android.content.res.Resources.Theme
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily

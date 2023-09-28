@@ -1,6 +1,5 @@
-package `in`.hypernation.cryptowiki.screens.home_screen
+package com.herika.cryptowiki.screens.home_screen
 
-import android.util.Log
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -52,9 +51,9 @@ import androidx.navigation.NavController
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.herika.cryptowiki.R
-import `in`.hypernation.cryptowiki.screens.Screen
-import `in`.hypernation.cryptowiki.screens.view_models.CoinListViewModel
-import `in`.hypernation.cryptowiki.ui.theme.fonts
+import com.herika.cryptowiki.screens.Screen
+import com.herika.cryptowiki.screens.view_models.CoinListViewModel
+import com.herika.cryptowiki.ui.theme.fonts
 import java.lang.Float.min
 
 @Composable
@@ -230,7 +229,7 @@ fun HomeScreen(
                                     }
                             ) {
                                 Text(
-                                    text = "here,",
+                                    text = "Say Hello to",
                                     color = MaterialTheme.colorScheme.surfaceVariant,
                                     fontSize = 24.sp,
                                     fontFamily = fonts,

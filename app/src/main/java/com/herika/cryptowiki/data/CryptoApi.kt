@@ -1,7 +1,7 @@
-package `in`.hypernation.cryptowiki.data
+package com.herika.cryptowiki.data
 
-import `in`.hypernation.cryptowiki.data.dto.CoinDto
-import `in`.hypernation.cryptowiki.data.dto.CoinListDto
+import com.herika.cryptowiki.data.dto.CoinDto
+import com.herika.cryptowiki.data.dto.CoinListDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

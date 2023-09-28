@@ -1,4 +1,4 @@
-package `in`.hypernation.cryptowiki.screens.view_models
+package com.herika.cryptowiki.screens.view_models
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -6,8 +6,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import `in`.hypernation.cryptowiki.data.repository.CryptoRepository
-import `in`.hypernation.cryptowiki.utils.Resource
+import com.herika.cryptowiki.data.repository.CryptoRepository
+import com.herika.cryptowiki.utils.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

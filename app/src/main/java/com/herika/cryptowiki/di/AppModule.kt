@@ -1,12 +1,12 @@
-package `in`.hypernation.cryptowiki.di
+package com.herika.cryptowiki.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import `in`.hypernation.cryptowiki.data.CryptoApi
-import `in`.hypernation.cryptowiki.data.repository.CryptoRepository
-import `in`.hypernation.cryptowiki.utils.Constants.BASE_URL
+import com.herika.cryptowiki.data.CryptoApi
+import com.herika.cryptowiki.data.repository.CryptoRepository
+import com.herika.cryptowiki.utils.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton

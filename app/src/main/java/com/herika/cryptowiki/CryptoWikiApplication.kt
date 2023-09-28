@@ -1,4 +1,4 @@
-package `in`.hypernation.cryptowiki
+package com.herika.cryptowiki
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

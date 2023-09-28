@@ -1,13 +1,11 @@
-package `in`.hypernation.cryptowiki.data.repository
+package com.herika.cryptowiki.data.repository
 
-import android.net.http.HttpException
-import android.util.Log
-import `in`.hypernation.cryptowiki.data.CryptoApi
-import `in`.hypernation.cryptowiki.data.dto.toCoin
-import `in`.hypernation.cryptowiki.data.dto.toCoinList
-import `in`.hypernation.cryptowiki.domain.models.Coin
-import `in`.hypernation.cryptowiki.domain.models.CoinList
-import `in`.hypernation.cryptowiki.utils.Resource
+import com.herika.cryptowiki.data.CryptoApi
+import com.herika.cryptowiki.data.dto.toCoin
+import com.herika.cryptowiki.data.dto.toCoinList
+import com.herika.cryptowiki.domain.models.Coin
+import com.herika.cryptowiki.domain.models.CoinList
+import com.herika.cryptowiki.utils.Resource
 import java.io.IOException
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package `in`.hypernation.cryptowiki.screens.detail_screen
+package com.herika.cryptowiki.screens.detail_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -40,15 +40,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.herika.cryptowiki.R
-import `in`.hypernation.cryptowiki.data.dto.Tag
-import `in`.hypernation.cryptowiki.data.dto.Team
-import `in`.hypernation.cryptowiki.domain.models.Coin
-import `in`.hypernation.cryptowiki.screens.view_models.CoinDetailViewModel
-import `in`.hypernation.cryptowiki.ui.theme.Green
-import `in`.hypernation.cryptowiki.ui.theme.LightBlue
-import `in`.hypernation.cryptowiki.ui.theme.Orange
-import `in`.hypernation.cryptowiki.ui.theme.Red
-import `in`.hypernation.cryptowiki.ui.theme.fonts
+import com.herika.cryptowiki.data.dto.Tag
+import com.herika.cryptowiki.data.dto.Team
+import com.herika.cryptowiki.domain.models.Coin
+import com.herika.cryptowiki.screens.view_models.CoinDetailViewModel
+import com.herika.cryptowiki.ui.theme.Green
+import com.herika.cryptowiki.ui.theme.LightBlue
+import com.herika.cryptowiki.ui.theme.Orange
+import com.herika.cryptowiki.ui.theme.Red
+import com.herika.cryptowiki.ui.theme.fonts
 
 
 @OptIn(ExperimentalLayoutApi::class)

@@ -1,7 +1,7 @@
-package `in`.hypernation.cryptowiki.domain.models
+package com.herika.cryptowiki.domain.models
 
-import `in`.hypernation.cryptowiki.data.dto.Tag
-import `in`.hypernation.cryptowiki.data.dto.Team
+import com.herika.cryptowiki.data.dto.Tag
+import com.herika.cryptowiki.data.dto.Team
 
 data class Coin(
     val description: String,

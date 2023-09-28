@@ -1,4 +1,4 @@
-package `in`.hypernation.cryptowiki.screens
+package com.herika.cryptowiki.screens
 
 sealed class Screen(val route : String){
     object HomeScreen : Screen("home_screen")

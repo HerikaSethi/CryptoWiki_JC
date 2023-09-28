@@ -1,6 +1,6 @@
-package `in`.hypernation.cryptowiki.data.dto
+package com.herika.cryptowiki.data.dto
 
-import `in`.hypernation.cryptowiki.domain.models.Coin
+import com.herika.cryptowiki.domain.models.Coin
 
 data class CoinDto(
     val contract: String,

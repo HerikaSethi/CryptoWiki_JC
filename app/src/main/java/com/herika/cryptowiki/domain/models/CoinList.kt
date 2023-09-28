@@ -1,4 +1,4 @@
-package `in`.hypernation.cryptowiki.domain.models
+package com.herika.cryptowiki.domain.models
 
 data class CoinList(
     val id: String,

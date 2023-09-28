@@ -1,4 +1,4 @@
-package `in`.hypernation.cryptowiki.data.dto
+package com.herika.cryptowiki.data.dto
 
 data class Team(
     val id: String,
